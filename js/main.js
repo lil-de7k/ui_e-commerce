@@ -1,7 +1,8 @@
 import { changeCount } from "./change-count.js";
+import { generateDetails } from "./details-product.js";
 
 let products;
-let result = fetch("data.json")
+fetch("data.json")
   .then((data) => data.json())
   .then((data) => {
     handleData(data);
@@ -28,7 +29,10 @@ function handleData(data) {
                 Price: ${price}$
               </p>
             </div>
-            <button class="feature-btn" data-ion="${index}">Add To Cart</button>
+            <div class="btns">
+              <button class="feature-btn" data-ion="${index}">Add To Cart</button>
+              <button class="show-btn" data-ion="${id}">Show Details</button>
+            </div>
           </div>
         </li>
       `;
@@ -43,6 +47,15 @@ function handleData(data) {
       changeCount();
     });
   });
+
+  let showBtn = document.querySelectorAll(".show-btn");
+  showBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      let id = Number(btn.getAttribute("data-ion"));
+      generateDetails(id);
+      showDetails();
+    });
+  });
 }
 
 let wishList = JSON.parse(localStorage.getItem("products")) || [];
@@ -51,4 +64,13 @@ function saveDataInLocalStorage(index) {
   wishList.push(product);
 
   localStorage.setItem("products", JSON.stringify(wishList));
+}
+
+function showDetails() {
+  let main = document.getElementById("details");
+  main.classList.add("active");
+
+  main.addEventListener("click", () => {
+    main.classList.remove("active");
+  });
 }
