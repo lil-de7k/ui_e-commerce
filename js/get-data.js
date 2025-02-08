@@ -11,7 +11,7 @@ let app = document.querySelector(".product-list");
 function handleData(data) {
   app.innerHTML = data
     .map((item) => {
-      let { id, title, img, price } = item;
+      let { id, title, img, price, quantity } = item;
       return `
         <li class="product-${id}">
           <div class="featured-book">
@@ -23,6 +23,9 @@ function handleData(data) {
               <h3>${title}</h3>
               <p>
                 Price: ${price}$
+              </p>
+              <p>
+                quantity: ${quantity}
               </p>
             </div>
             <button class="feature-btn">Remove To cart</button>

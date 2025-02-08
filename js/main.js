@@ -1,8 +1,10 @@
 import { changeCount } from "./change-count.js";
+import { changeQuantity } from "./change-quantity.js";
 import { generateDetails } from "./details-product.js";
+import { wishListManage } from "./wishList-manage.js";
 
 let products;
-fetch("data.json")
+fetch("data-details.json")
   .then((data) => data.json())
   .then((data) => {
     handleData(data);
@@ -15,7 +17,7 @@ let app = document.querySelector(".product-list");
 function handleData(data) {
   app.innerHTML = data
     .map((item, index) => {
-      let { id, title, img, price } = item;
+      let { id, title, img, price, quantity } = item;
       return `
         <li class="product-${id}">
           <div class="featured-book">
@@ -27,6 +29,9 @@ function handleData(data) {
               <h3>${title}</h3>
               <p>
                 Price: ${price}$
+              </p>
+              <p class="quantity">
+                quantity: ${quantity}
               </p>
             </div>
             <div class="btns">
@@ -45,6 +50,8 @@ function handleData(data) {
       let index = Number(btn.getAttribute("data-ion"));
       saveDataInLocalStorage(index);
       changeCount();
+      wishListManage(products, index);
+      changeQuantity(index);
     });
   });
 
