@@ -1,14 +1,24 @@
 import { changeCount } from "./change-count.js";
 import { changeQuantity } from "./change-quantity.js";
 import { generateDetails } from "./details-product.js";
+import { incrementQuantity, decrementQuantity } from "./events-btn.js";
 import { wishListManage } from "./wishList-manage.js";
 
 let products;
 fetch("data-details.json")
   .then((data) => data.json())
   .then((data) => {
-    handleData(data);
-    products = data;
+    handleData(data.products);
+    products = data.products;
+
+    let btns = document.querySelectorAll(".feature-btn");
+    btns.forEach((btn) => {
+      let id = Number(btn.getAttribute("data-id"));
+      changeQuantity(id);
+    });
+
+    incrementQuantity();
+    decrementQuantity();
   })
   .catch((error) => console.error(error));
 
@@ -30,13 +40,15 @@ function handleData(data) {
               <p>
                 Price: ${price}$
               </p>
-              <p class="quantity">
-                quantity: ${quantity}
-              </p>
             </div>
             <div class="btns">
-              <button class="feature-btn" data-ion="${index}">Add To Cart</button>
+              <button class="feature-btn" data-ion="${index}" data-id="${id}">Add To Cart</button>
               <button class="show-btn" data-ion="${id}">Show Details</button>
+            </div>
+            <div class="incr-decr">
+              <button class="increment" data-id="${id}">+</button>
+              <p id="quantity-${id}" data-id="${id}">${quantity}</p>
+              <button class="decrement" data-id="${id}">-</button>
             </div>
           </div>
         </li>
@@ -48,10 +60,12 @@ function handleData(data) {
   btns.forEach((btn) => {
     btn.addEventListener("click", () => {
       let index = Number(btn.getAttribute("data-ion"));
+      let id = Number(btn.getAttribute("data-id"));
+
       saveDataInLocalStorage(index);
-      changeCount();
       wishListManage(products, index);
-      changeQuantity(index);
+      changeCount();
+      changeQuantity(id);
     });
   });
 

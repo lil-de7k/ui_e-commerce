@@ -10,7 +10,7 @@ let details = document.querySelector(".details-list");
 function handleData(data) {
   details.innerHTML = data
     .map((item) => {
-      let { title, img, body, price, quantity } = item;
+      let { id, title, img, body, price, quantity } = item;
 
       return `
       <li>
@@ -23,7 +23,7 @@ function handleData(data) {
           <span>Price: ${price}</span>
           <div class="quantity">
             <p>quantity: </p>
-            <input type="text" value="${quantity}" />
+            <input type="text" data-id="${id}" value="${quantity}" />
           </div>
           <button>Add To Cart</button>
         </div>
@@ -32,6 +32,16 @@ function handleData(data) {
     `;
     })
     .join("");
+
+  let input = document.querySelector("input");
+  let id = Number(input.getAttribute("data-id"));
+
+  let getData = JSON.parse(localStorage.getItem("products")) || [];
+  let product = getData.find((ele) => ele.id === id);
+
+  if (product) {
+    input.value = product.quantity;
+  }
 }
 
 export { generateDetails };

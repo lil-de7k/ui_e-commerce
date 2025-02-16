@@ -1,8 +1,11 @@
-function changeQuantity(index) {
+function changeQuantity(productId) {
   let getData = JSON.parse(localStorage.getItem("products")) || [];
 
-  let paras = document.querySelectorAll(".quantity");
-  paras[index].innerHTML = `quantity: ${getData[index].quantity}`;
+  let product = getData.find((ele) => ele.id === productId);
+  if (product) {
+    let paragraph = document.getElementById(`quantity-${productId}`);
+    paragraph.innerHTML = product.quantity;
+  }
 }
 
 export { changeQuantity };
