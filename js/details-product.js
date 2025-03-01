@@ -38,6 +38,9 @@ function handleData(data) {
 export { generateDetails };
 */
 
+import { changeQuantity } from "./change-quantity.js";
+import { decrementQuantity, incrementQuantity } from "./events-btn.js";
+
 // - show details product using find
 
 async function generateDetails(id) {
@@ -62,24 +65,24 @@ function handleData(data) {
           <h3>${title}</h3>
           <p>${body}</p>
           <span>Price: ${price}</span>
-          <div class="quantity">
-            <p>quantity: </p>
-            <input type="text" data-id="${id}" value="${quantity}" />
+          <div class="incr-decr">
+            <button class="increment" data-id="${id}">+</button>
+            <p id="quantity-${id}" class="quantity" data-id="${id}">${quantity}</p>
+            <button class="decrement" data-id="${id}">-</button>
           </div>
           <button>Add To Cart</button>
         </div>
       </li>
     `;
 
-  let input = document.querySelector("input");
-  let productId = Number(input.getAttribute("data-id"));
+  incrementQuantity(details);
+  decrementQuantity(details);
 
-  let getData = JSON.parse(localStorage.getItem("products")) || [];
-  let product = getData.find((ele) => ele.id === productId);
-
-  if (product) {
-    input.value = product.quantity;
-  }
+  let textQuantityAll = details.querySelectorAll(".quantity");
+  textQuantityAll.forEach((textQuantity) => {
+    let id = Number(textQuantity.getAttribute("data-id"));
+    changeQuantity(details, id);
+  });
 }
 
 export { generateDetails };

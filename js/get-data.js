@@ -14,22 +14,21 @@ function handleData(data) {
       let { id, title, img, price, quantity } = item;
       return `
         <li class="product-${id}">
-          <div class="featured-book">
-            <figure class="figure-img">
-              <img src="${img}" alt="" />
-            </figure>
-
-            <div class="feature-title">
-              <h3>${title}</h3>
-              <p>
-                Price: ${price}$
-              </p>
-              <p>
-                quantity: ${quantity}
-              </p>
-            </div>
-            <button class="feature-btn">Remove To cart</button>
+          <figure class="figure-img">
+            <img src="${img}" alt="" />
+          </figure>
+          <div class="feature-title">
+            <h3>${title}</h3>
+            <p>
+              Price: ${price}$
+            </p>
+            <p>
+              quantity: ${quantity}
+            </p>
           </div>
+          <button class="close-product">
+            <ion-icon name="close-outline" role="img" class="md hydrated"></ion-icon>
+          </button>
         </li>
       `;
     })

@@ -9,12 +9,91 @@
   <body>
     <section id="products">
       <div class="section-title">
-        <h1>Shopping Cart</h1>
-        <a href="index.html" title="shopping cart" class="cart"> Home Page </a>
+        <a href="index.html">
+          <h1>New Books</h1>
+        </a>
+        <div class="icons">
+          <a href="shopping-cart.html" title="shopping cart" class="cart">
+            <ion-icon name="cart-outline"></ion-icon>
+            <span>0</span>
+          </a>
+        </div>
       </div>
-      <ul class="product-list"></ul>
+    </section>
+
+    <section id="shopping-cart">
+      <h1>Welcome Shopping Cart</h1>
+    </section>
+
+    <section id="section-cart">
+      <div class="title-cart">
+        <h3>My Cart <span>(0)</span></h3>
+      </div>
+
+      <div class="container">
+        <div class="product-cart">
+          <ul class="product-list"></ul>
+        </div>
+
+        <div class="slide-order">
+          <div class="order-card">
+            <div class="title">
+              <h3>Order Summary</h3>
+            </div>
+
+            <ul class="total-list">
+              <li class="sub-total">
+                <p>SubTotal</p>
+                <div class="shipping-div">
+                  $
+                  <span>10</span>
+                </div>
+              </li>
+              <li class="shipping">
+                <p>Shipping and Handling</p>
+                <div class="shipping-div">
+                  $
+                  <span>10</span>
+                </div>
+              </li>
+              <li class="sales">
+                <p>Sales Tax</p>
+                <div class="shipping-div">
+                  $
+                  <span>15</span>
+                </div>
+              </li>
+            </ul>
+
+            <div class="total">
+              <h3>Total</h3>
+              <div class="shipping-div">
+                $
+                <span>0</span>
+              </div>
+            </div>
+
+            <div class="checkBox">
+              <h3>* Tax estimated at checkout</h3>
+
+              <div class="btn">
+                <button class="sign-in">Sign In &amp; Checkout</button>
+                <button class="guest">Guest Checkout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <script src="js/get-data.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
