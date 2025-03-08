@@ -21,7 +21,7 @@ function total() {
     Number(Number(textSub.innerHTML) + Number(shipping.innerHTML)) -
     Number(sales.innerHTML);
 
-  total.innerHTML = totalValue;
+  total.innerHTML = totalValue.toFixed(1);
 }
 
 export { subTotal, total };

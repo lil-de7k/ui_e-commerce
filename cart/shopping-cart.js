@@ -7,7 +7,13 @@ changeCount();
 subTotal();
 total();
 
-let titleCart = document.querySelector(".title-cart span");
-let getAllData = JSON.parse(localStorage.getItem("products")) || [];
+function changeLength() {
+  let titleCart = document.querySelector(".title-cart span");
+  let getAllData = JSON.parse(localStorage.getItem("products")) || [];
 
-titleCart.innerHTML = `(${getAllData.length})`;
+  titleCart.innerHTML = `(${getAllData.length})`;
+}
+
+changeLength();
+
+export { changeLength };

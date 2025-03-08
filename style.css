@@ -507,7 +507,7 @@
     width: 100%;
 
     .product-cart {
-      .product-list {
+      .product-shopping-list {
         display: grid;
         gap: 15px;
         overflow: auto;
