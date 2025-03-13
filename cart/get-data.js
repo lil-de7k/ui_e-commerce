@@ -1,6 +1,4 @@
 import { changeCount } from "../js/change-count.js";
-import { changeQuantity } from "../js/change-quantity.js";
-import { decrementQuantity, incrementQuantity } from "../js/events-btn.js";
 import { subTotal, total } from "./order-summary.js";
 import { removeProduct } from "./remove-product.js";
 import { changeLength } from "./shopping-cart.js";
@@ -54,15 +52,6 @@ function handleData(data) {
       changeLength();
       changeCount();
     });
-  });
-
-  incrementQuantity(app);
-  decrementQuantity(app);
-
-  let textQuantityAll = app.querySelectorAll(".quantity");
-  textQuantityAll.forEach((textQuantity) => {
-    let id = Number(textQuantity.getAttribute("data-id"));
-    changeQuantity(app, id);
   });
 }
 

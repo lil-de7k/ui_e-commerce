@@ -8,7 +8,7 @@ function subTotal() {
     count += subTotal;
   });
 
-  textSub.innerHTML = count;
+  textSub.innerHTML = count.toFixed(1);
 }
 
 function total() {

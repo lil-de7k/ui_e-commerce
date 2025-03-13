@@ -70,7 +70,7 @@ function handleData(data) {
             <p id="quantity-${id}" class="quantity" data-id="${id}">${quantity}</p>
             <button class="decrement" data-id="${id}">-</button>
           </div>
-          <button>Add To Cart</button>
+          <button class="feature-btn" data-id="${id}">Add To Cart</button>
         </div>
       </li>
     `;
