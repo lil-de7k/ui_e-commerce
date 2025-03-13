@@ -1,3 +1,4 @@
+import { showMassage } from "../cart/show-massage.js";
 import { changeCount } from "./change-count.js";
 import { changeQuantity } from "./change-quantity.js";
 import { generateDetails } from "./details-product.js";
@@ -63,6 +64,7 @@ function handleData(data) {
       wishListManage(products, index);
       changeCount();
       changeQuantity(app, id);
+      showMassage("Added", id);
     });
   });
 

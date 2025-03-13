@@ -1,7 +1,10 @@
 import { changeCount } from "../js/change-count.js";
+import { changeQuantity } from "../js/change-quantity.js";
+import { decrementQuantity, incrementQuantity } from "../js/events-btn.js";
 import { subTotal, total } from "./order-summary.js";
 import { removeProduct } from "./remove-product.js";
 import { changeLength } from "./shopping-cart.js";
+import { showMassage } from "./show-massage.js";
 
 function getDataInLocalStorage() {
   let getData = localStorage.getItem("products");
@@ -51,7 +54,17 @@ function handleData(data) {
       total();
       changeLength();
       changeCount();
+      showMassage("removed", id);
     });
+  });
+
+  incrementQuantity(app);
+  decrementQuantity(app);
+
+  let textQuantityAll = app.querySelectorAll(".quantity");
+  textQuantityAll.forEach((textQuantity) => {
+    let id = Number(textQuantity.getAttribute("data-id"));
+    changeQuantity(app, id);
   });
 }
 
